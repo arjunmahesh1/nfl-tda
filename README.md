@@ -191,18 +191,9 @@ We focus on the moment when the quarterback releases the ball because:
 ### Point Cloud Construction
 
 Each play is represented as a set of (x, y) coordinates:
-- 11 defensive players (typically)
+- 11 defensive players (typically, sometimes less - but can be interepreted as defenders not important to coverage/camera angle)
 - 2D positions on the field
 - Suitable for persistent homology via Vietoris-Rips filtration
-
-## Requirements
-
-See [requirements.txt](requirements.txt) for full dependencies:
-- Python 3.8+
-- pandas, numpy (data handling)
-- matplotlib, seaborn (visualization)
-- ripser (persistent homology)
-- scikit-learn (clustering, analysis)
 
 ## Usage Examples
 
