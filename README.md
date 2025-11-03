@@ -155,7 +155,7 @@ nfl-tda/
 ### 5. Report Writing (Week 9-12)
 
 - [ ] Draft paper sections
-- [ ] Final report
+- [ ] Final report: Feedback= Separate sections for organization purposes for clearer writing style
 - [ ] Presentation
 
 ## Expected Outcomes
