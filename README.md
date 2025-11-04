@@ -1,22 +1,16 @@
 # NFL Defensive Coverage Analysis Using Topological Data Analysis
 
-MATH 412 project applying persistent homology to identify and quantify defensive coverage gaps in NFL tracking data.
-
-## Project Overview
-
-This project uses Topological Data Analysis (TDA), specifically persistent homology, to analyze defensive coverage patterns in NFL passing plays. By representing defensive player positions as point clouds and computing their topological features (connected components, loops/holes), we quantify coverage quality and correlate these features with play outcomes.
+MATH 412 project applying TDA to identify and quantify defensive coverage gaps in NFL tracking data.
 
 ### Research Question
 
 Can persistent homology quantify defensive coverage gaps, and do topological features correlate with play outcomes (completed vs. incomplete passes)?
 
-## Quick Start
-
 ### 1. Installation
 
 ```bash
 # Clone the repository
-git clone ...
+git clone https://github.com/arjunmahesh1/nfl-tda.git
 cd nfl-tda
 
 # Install dependencies
@@ -27,11 +21,9 @@ pip install -r requirements.txt
 
 #### Option A: Manual Download
 
-1. Visit the [NFL Big Data Bowl 2021 on Kaggle](https://www.kaggle.com/c/nfl-big-data-bowl-2021/data)
-2. Sign in with your Kaggle account (create one if needed)
-3. Click "Download All" (~1.5 GB)
-4. Extract the ZIP file
-5. Move files to `data/raw/`
+1. [NFL Big Data Bowl 2021 on Kaggle](https://www.kaggle.com/c/nfl-big-data-bowl-2021/data)
+2. Click "Download All" (~1.5 GB) > Extract the ZIP file
+3. Move files to `/data/raw/`
 
 #### Option B: Kaggle API
 
@@ -39,19 +31,16 @@ pip install -r requirements.txt
 # Install Kaggle CLI
 pip install kaggle
 
-# Download dataset
+# Download dataset (Authenticate Kaggle on browser first)
 kaggle competitions download -c nfl-big-data-bowl-2021 -p data/raw/
 
 # Unzip (Linux/Mac)
 cd data/raw && unzip nfl-big-data-bowl-2021.zip && cd ../..
-
 # Unzip (Windows PowerShell)
 Set-Location -Path "data\raw"; Expand-Archive -Path "nfl-big-data-bowl-2021.zip" -DestinationPath .; Set-Location -Path "..\.."
 ```
 
-**Note**: Kaggle API requires login via Kaggle
-
-**Expected files in `data/raw/`:**
+**`data/raw/`:**
 - `games.csv` - Game-level metadata
 - `plays.csv` - Play-level information
 - `players.csv` - Player roster data
@@ -62,7 +51,6 @@ Set-Location -Path "data\raw"; Expand-Archive -Path "nfl-big-data-bowl-2021.zip"
 ```bash
 # Option 1: Jupyter notebook
 jupyter notebook notebooks/01_data_preprocessing.ipynb
-
 # Option 2: Python script
 cd src
 python preprocessing.py
@@ -77,29 +65,6 @@ The preprocessing pipeline will:
 - Filter to defensive players only
 - Create point cloud representations
 - Generate validation visualizations
-
-## Project Structure
-
-```
-nfl-tda/
-├── data/
-│   ├── raw/                    # NFL Big Data Bowl 2021 dataset (download separately)
-│   └── processed/              # Processed point clouds and dataframes
-│       ├── defensive_formations.csv
-│       └── point_clouds.npy
-├── src/
-│   ├── __init__.py
-│   ├── preprocessing.py        # Data loading, cleaning, normalization
-│   ├── tda_analysis.py         # Persistent homology computation (coming soon)
-│   └── visualization.py        # Field plots and validation
-├── notebooks/
-│   └── 01_data_preprocessing.ipynb
-├── results/
-│   ├── figures/                # Generated plots
-│   └── persistence_diagrams/   # TDA results
-├── requirements.txt
-└── README.md
-```
 
 ## Key Features
 
