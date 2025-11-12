@@ -210,7 +210,7 @@ print(f"Average horizontal spread: {np.mean(x_spreads):.1f} yards")
 
 ## References
 
-- **NFL Big Data Bowl 2021**: [Kaggle Competition](https://www.kaggle.com/c/nfl-big-data-bowl-2021)
+- **DATA:** **NFL Big Data Bowl 2021**: [Kaggle Competition](https://www.kaggle.com/c/nfl-big-data-bowl-2021)
 - **Goldfarb, D. (2014)**: "An Application of Topological Data Analysis to Hockey Analytics"
 - **Alagappan, M. (2012)**: "From 5 to 13: Redefining the Positions in Basketball"
 - **Xu & Fong (2025)**: "Apply Topological Data Analysis in Football Scouting"
