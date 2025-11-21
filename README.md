@@ -1,6 +1,6 @@
 # NFL Defensive Coverage Analysis Using Topological Data Analysis
 
-MATH 412 project applying TDA to identify and quantify defensive coverage gaps in NFL tracking data.
+MATH 412 project applying TDA to identify and quantify defensive coverage gaps in NFL tracking data
 
 ### Research Question
 
@@ -87,55 +87,7 @@ The preprocessing pipeline will:
 - `plot_formation_statistics()`: Statistical distributions
 - `validate_preprocessing()`: Generate validation plots
 
-## Methodology
 
-### 1. Data Preprocessing (Week 1-2) ✓
-
-- [x] Load NFL tracking data
-- [x] Standardize coordinate systems
-- [x] Extract ball release frames
-- [x] Create defensive point clouds
-- [x] Validation visualizations
-
-### 2. TDA Implementation (Week 3-4)
-
-- [ ] Compute Vietoris-Rips filtration
-- [ ] Calculate persistent homology (H₀ and H₁)
-- [ ] Generate persistence diagrams
-- [ ] Extract topological features
-
-### 3. Analysis (Week 5-6)
-
-- [ ] Compare features by play outcome
-- [ ] Cluster analysis of coverage patterns
-- [ ] Statistical testing
-- [ ] Correlation with defensive success
-
-### 4. Interpretation & Visualization (Week 7-8)
-
-- [ ] Create representative examples
-- [ ] Generate final plots
-- [ ] Interpret topological features
-
-### 5. Report Writing (Week 9-12)
-
-- [ ] Draft paper sections
-- [ ] Final report: Feedback= Separate sections for organization purposes for clearer writing style
-- [ ] Presentation
-
-## Expected Outcomes
-
-1. **Quantitative Coverage Metrics**: Topological features that measure coverage quality
-   - H₀ persistence: Defender clustering/spread
-   - H₁ persistence: Coverage "holes" or gaps
-
-2. **Correlation Analysis**: Relationship between topology and play success
-   - Do completed passes show larger H₁ features (bigger gaps)?
-   - Do tight coverages merge quickly in filtration?
-
-3. **Formation Clustering**: Identify distinct defensive patterns
-   - Zone vs. man coverage signatures
-   - Team-specific tendencies
 
 ## Technical Details
 
@@ -251,6 +203,71 @@ array([[45.2, 26.7],   # Defender 1
 
 ---
 
-**Current Status**: Week 2 Complete - Data preprocessing pipeline implemented ✓
 
-**Next Milestone**: Week 3-4 - TDA implementation and persistent homology computation
+## Interpretation:
+1. H₀ (Defender Clustering)
+- High H₀ (many components) = Defenders spread out, isolated
+- Low H₀ (few components) = Defenders bunched together in groups
+
+- For offense: If H₀ = 3 at snap, there are 3 defender clusters → Attack the seams between them
+- For defense: Monitor your H₀ - if too high (>8), defenders can't help each other; if too low (< 3), vulnerable to spread plays
+   - Example: Cover 2 typically has H₀ ≈ 3 (two deep safeties + front seven as one cluster)
+
+2. H₁ (Coverage Gaps)
+- H₁ = 0 → No gaps, tight coverage
+- H₁ = 2 → Two distinct holes offense can exploit
+- Persistence = How big the gap is in yards
+- Findings:
+   - Incomplete passes: 0.42 gaps (MORE)
+   - Complete passes:   0.40 gaps (FEWER)
+   - For Defense: Having gaps isn't automatically bad, data shows incomplete passes actually had more gaps This means:
+      - Aggressive coverage (leaving some gaps intentionally) can bait QBs into mistakes
+      - Gap existence ≠ offensive success
+   - For Offense: Just because you see a gap on film doesn't mean:
+      - The gap will be there during the play
+      - You can complete the pass even if it is
+      - QB execution and timing matter more than gap detection
+
+3. Persistence Landscapes
+- Complete and incomplete passes had similar landscapes
+
+4. Persistence Images
+- Bright spots = Large, persistent gaps
+- Dark areas = Tight coverage
+- No bright spots = Defense is locked down
+- (Could unlock film plays with darkest spots)
+
+5. Betti Curves
+- β₀(depth) = How many defender clusters at each depth
+- β₁(depth) = Where gaps appear as routes develop
+- Betti curve shows β₁ peaks at 15 yards
+   → Most gaps appear at intermediate depth
+- Formation stretching: If β₀ stays high (many clusters) when spread:
+   → Defenders can't support each other
+   → Keep spreading them out
+- If β₀ drops quickly:
+   → Defense compacts well
+   → Need different approach (vertical routes)
+
+6. Bottleneck Distance
+- How "similar" two defensive formations are topologically 
+
+7. Wasserstein Distance
+- Low Wasserstein = Excellent coverage discipline
+- High Wasserstein = Lots of vulnerability across the field
+
+8. Permutation Test (Statistical Significance)
+- If p < 0.05: Coverage gaps do significantly affect completions
+- If p > 0.05: Other factors (QB skill, pressure) matter more than gaps
+
+9. Mapper Algorithm
+- Groups formations into "families" 
+
+10. Hierarchical Clustering
+- Which formations are "related" to each other
+
+11. MDS (2D Formation Map)
+- Visual map of all possible defensive structures
+- Green dots (Complete) and Red dots (Incomplete) are mixed
+   → No clear separation
+   → Coverage gaps alone don't determine success
