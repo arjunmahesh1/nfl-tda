@@ -1,5 +1,5 @@
 """
-Visualize a defensive formation with player names to understand what's happening.
+Visualize a defensive formation with player names
 """
 
 import sys

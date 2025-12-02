@@ -21,7 +21,12 @@ import persim
 from persim import PersistenceImager
 from sklearn.cluster import DBSCAN, AgglomerativeClustering
 from sklearn.decomposition import PCA
-from sklearn.manifold import UMAP
+# UMAP is optional - only used in Mapper if available
+try:
+    import umap
+    UMAP_AVAILABLE = True
+except ImportError:
+    UMAP_AVAILABLE = False
 
 # Visualization
 import matplotlib.pyplot as plt
