@@ -6,8 +6,6 @@ MATH 412 project applying TDA to identify and quantify defensive coverage gaps i
 
 Can persistent homology quantify defensive coverage gaps, and do topological features correlate with play outcomes (completed vs. incomplete passes)?
 
-02_tda_analysis.ipynb: on pass_forward event
-
 
 ### 1. Installation
 
